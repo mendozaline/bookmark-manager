@@ -6,14 +6,16 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      resource: "https://facebook.github.io/react/docs/thinking-in-react.html"
+    };
   }
 
 // event handlers here
 
   render() {
     return (
-      <a href="https://facebook.github.io/react/docs/thinking-in-react.html">Thinking in React</a>
+      <a href={this.state.resource}>Thinking in React</a>
     );
   }
 }
