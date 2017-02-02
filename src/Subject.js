@@ -9,7 +9,7 @@ export default class Subject extends Component {
 
   render() {
     return(
-      <p>Subject component</p>
+      <p>{this.props.subject}</p>
     )
   }
 
