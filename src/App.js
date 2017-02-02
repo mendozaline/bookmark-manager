@@ -57,12 +57,13 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.resources)
     return (
       <div>
         Parent Component
-        <Subject subject={this.state.resources[0].subject}/>
-        <Subject subject={this.state.resources[1].subject}/>
-        <Subject subject={this.state.resources[2].subject}/>
+        <Subject subject={this.state.resources[0]}/>
+        <Subject subject={this.state.resources[1]}/>
+        <Subject subject={this.state.resources[2]}/>
       </div>
     );
   }
