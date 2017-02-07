@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Subject from './Subject.js';
+import Subject from './components/Subject';
 
 class App extends Component {
   constructor() {
@@ -57,14 +57,19 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.resources)
+    console.log("state: ", this.state.resources)
     return (
       <div>
         Parent Component
-        <Subject subject={this.state.resources[0]}/>
-        <Subject subject={this.state.resources[1]}/>
-        <Subject subject={this.state.resources[2]}/>
+        {
+          this.state.resources.map((r, i) => {
+            return(
+              <Subject key={i} subject={r}/>
+            )
+          })
+        }
       </div>
+
     );
   }
 }

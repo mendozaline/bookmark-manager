@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export default class Subject extends Component {
   constructor(props) {
     super(props)
+    this.heading = "React Resources"
   }
 
   // event handlers
