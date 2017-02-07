@@ -57,7 +57,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("state: ", this.state.resources)
+//    console.log("state: ", this.state.resources)
     return (
       <div>
         Parent Component
@@ -69,7 +69,6 @@ class App extends Component {
           })
         }
       </div>
-
     );
   }
 }

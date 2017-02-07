@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Subject extends Component {
-  constructor(props) {
-    super(props)
-    this.heading = "React Resources"
-  }
+export const Subject = (props) => {
 
-  // event handlers
+  console.log("props1: ", props)
+  console.log("props2: ", props.subject)
+  console.log("props3: ", props.subject.resources[0].title)
+  console.log("props4: ", props.subject.resources[0].url)
 
-  render() {
-    console.log("props1: ", this.props)
-    console.log("props2: ", this.props.subject)
-    console.log("props3: ", this.props.subject.resources[0].title)
-    console.log("props4: ", this.props.subject.resources[0].url)
+  return(
+    <div>
+      <h3>{props.subject.subject}</h3>
+      <ul>
+        {props.subject.resources.map((r, i) => {
+          return <li key={i}><a href={r.url}>{r.title}</a></li>}) }
+      </ul>
+    </div>
+  )
 
-    return(
-      <div>
-        <h3>{this.props.subject.subject}</h3>
-        <ul>
-          {this.props.subject.resources.map((r, i) => {
-            return <li key={i}><a href={r.url}>{r.title}</a></li>}) }
-        </ul>
-      </div>
-    )
-  }
+};
 
-}
+export default Subject;
