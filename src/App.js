@@ -243,6 +243,43 @@ class App extends Component {
             playlist: false,
           }
         ]
+      },
+
+      {
+        subject: "Lifecycle Methods",
+        topics: [
+          {
+            title: "Stack Overflow: What are typical use cases for React lifecycle methods like componentWillReceiveProps",
+            url: "https://stackoverflow.com/questions/38929991/what-are-typical-use-cases-for-react-lifecycle-methods-like-componentwillreceive",
+            playlist: false,
+          },
+          {
+            title: "React Documentation: Adding Lifecycle Methods to a Class",
+            url: "https://facebook.github.io/react/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class",
+            playlist: false,
+          },
+          {
+            title: "React Documentation: React.Component",
+            url: "https://facebook.github.io/react/docs/react-component.html",
+            playlist: false,
+          },
+          {
+            title: "Mindspace: ReactJS Basics",
+            url: "",
+            playlist: true,
+            links: [
+              {title: "ReactJS Basics - #11 Communicating between Parent and Child Component",
+               url: "https://www.youtube.com/watch?v=2teBTI0_eRw"},
+              {title: "ReactJS Basics - #12 Passing Data between Parent and Child Components",
+               url: "https://www.youtube.com/watch?v=5Xew--ycx0o"},
+              {title: "ReactJS Basics - #13 Two-Way-Binding",
+               url: "https://www.youtube.com/watch?v=IK9k9hSuYeA"},
+              {title: "ReactJS Basics - #14 Component Lifecycle",
+               url: "https://www.youtube.com/watch?v=Oioo0IdoEls"}
+            ]
+          }
+
+        ]
       }
 
     ]}
