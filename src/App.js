@@ -6,8 +6,12 @@ class App extends Component {
     super();
 
     this.addNewRes = this.addNewRes.bind(this)
+    this.handleTyping = this.handleTyping.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
 
-    this.state = {resources: [
+    this.state = {
+      subject: '',
+      resources: [
       {
         subject: "Functional Programming Basics",
         topics: [
@@ -288,8 +292,6 @@ class App extends Component {
   }
 
   addNewRes(subject, resource) {
-//    console.log("s:", subject)
-//    console.log("r:", resource)
     const tempState = this.state
     tempState.resources[subject].topics.push(resource)
     console.log('resources: ', this.state.resources)
@@ -297,11 +299,51 @@ class App extends Component {
     this.setState(tempState)
   }
 
+  handleTyping(event) {
+//    console.log('name: ', event.target.name)
+//    console.log('value: ', event.target.value)
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+//    console.log("subject: ", this.state.subject)
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+//    console.log('STATE:' + '\nsubject: ' +  this.state.subject)
+    const newSubject = {
+      subject: this.state.subject,
+      topics: [],
+    }
+
+    console.log('b: ', this.state.resources)
+    const tempSt = this.state
+    tempSt.resources.push(newSubject)
+    this.setState(tempSt)
+    console.log('a: ', this.state.resources)
+  }
+
   render() {
 //    console.log("state: ", this.state.resources)
 
     return (
       <div>
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="subject">Add subject:</label>
+          <input
+            name="subject"
+            id="subject"
+            type="string"
+            value={this.state.subject}
+            onChange={this.handleTyping} />
+
+          <br />
+
+          <button onClick={this.handleSubmit}>Submit</button>
+        </form>
+
+        <br />
+
         {
           this.state.resources.map((r, i) => {
             return(
@@ -309,6 +351,9 @@ class App extends Component {
             )
           })
         }
+
+        <br />
+
       </div>
     );
   }
