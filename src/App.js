@@ -5,6 +5,8 @@ class App extends Component {
   constructor() {
     super();
 
+    this.addNewRes = this.addNewRes.bind(this)
+
     this.state = {resources: [
       {
         subject: "Functional Programming Basics",
@@ -285,15 +287,25 @@ class App extends Component {
     ]}
   }
 
+  addNewRes(subject, resource) {
+//    console.log("s:", subject)
+//    console.log("r:", resource)
+    const tempState = this.state
+    tempState.resources[subject].topics.push(resource)
+    console.log('resources: ', this.state.resources)
+    console.log('resources[sub]: ', this.state.resources[subject])
+    this.setState(tempState)
+  }
+
   render() {
-    console.log("state: ", this.state.resources)
+//    console.log("state: ", this.state.resources)
 
     return (
       <div>
         {
           this.state.resources.map((r, i) => {
             return(
-              <Subject key={i} subject={r}/>
+              <Subject key={i} i={i} addRes={this.addNewRes} subject={r}/>
             )
           })
         }
