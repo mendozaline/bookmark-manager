@@ -13,7 +13,9 @@ export default class Subject extends Component {
     this.state = {
       isClicked: false,
       playlist: false,
-      dropdownUrl: ''
+      dropdownUrl: '',
+      title: '',
+      url: '',
     }
   } //end constructor
 
@@ -127,6 +129,42 @@ export default class Subject extends Component {
           {resources}
         </ul>
 
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="title">Title:</label>
+          <input
+            name="title"
+            id="title"
+            type="string"
+            value={this.state.title}
+            onChange={this.handleTyping} />
+
+          <br />
+
+          <label htmlFor="url">Link:</label>
+          <input
+            name="url"
+            id="url"
+            type="string"
+            value={this.state.url}
+            onChange={this.handleTyping} />
+
+          <br />
+
+          <label htmlFor="playlist">Playlist:
+            <input
+              name="playlist"
+              id="check"
+              type="checkbox"
+              //checked={this.state.playlist}
+              value={this.state.playlist}
+              onChange={this.handleTyping} />
+          </label>
+
+          <br />
+          <br />
+
+          <button onClick={this.handleSubmit}>Submit</button>
+        </form>
       </div>
     )
   }
