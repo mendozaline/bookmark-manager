@@ -9,6 +9,8 @@ export default class Subject extends Component {
     this.handleTyping = this.handleTyping.bind(this)
     this.dropDown = this.dropDown.bind(this)
     this.dropDownSub = this.dropDownSub.bind(this)
+    this.updatePlaylistObj = this.updatePlaylistObj.bind(this)
+    this.insertPlaylistObj = this.insertPlaylistObj.bind(this)
 
     this.state = {
       isClicked: false,
@@ -16,6 +18,9 @@ export default class Subject extends Component {
       dropdownUrl: '',
       title: '',
       url: '',
+      playlistTitle: '',
+      playlistUrl: '',
+      links: [],
     }
   } //end constructor
 
@@ -80,6 +85,33 @@ export default class Subject extends Component {
     window.open(this.state.dropdownUrl)
   }
 
+  //Changes state of playlist title/url
+  updatePlaylistObj(event) {
+    event.preventDefault()
+    console.log('playlist name: ', event.target.name)
+    console.log('playlist value: ', event.target.value)
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+//    console.log('playlistTitle: ', this.state.playlistTitle)
+//    console.log('playlistUrl: ', this.state.playlistUrl)
+  }
+
+  //Insert playlist obj into playlist array
+  insertPlaylistObj(event) {
+    event.preventDefault()
+    const arr = this.state.links
+    arr.push({
+      title: this.state.playlistTitle,
+      url: this.state.playlistUrl
+    })
+    console.log('links:', arr)
+    this.setState({
+      playlistTitle: '',
+      playlistUrl: ''
+    })
+  }
+
   render() {
 
     let resources = null
@@ -117,6 +149,39 @@ export default class Subject extends Component {
       resources = linksOrTitle
     } else {
       resources = null
+    }
+
+    let submitPlaylistRes = null
+
+    if (this.state.playlist) {
+      submitPlaylistRes = (
+        <div>
+            <label htmlFor="playlistTitle">Add playlist title:
+              <input
+                name="playlistTitle"
+                id="playlistTitle"
+                type="string"
+                value={this.state.playlistTitle}
+                onChange={this.updatePlaylistObj} />
+            </label>
+            <br/>
+            <label htmlFor="playlistUrl">Add playlist url:
+              <input
+                name="playlistUrl"
+                id="playlistUrl"
+                type="string"
+                value={this.state.playlistUrl}
+                onChange={this.updatePlaylistObj} />
+            </label>
+
+            <br/>
+
+            <button onClick={this.insertPlaylistObj}>Add to playlist</button>
+
+        </div>
+      )
+    } else {
+            submitPlaylistRes = null
     }
 
     return(
@@ -159,6 +224,11 @@ export default class Subject extends Component {
               value={this.state.playlist}
               onChange={this.handleTyping} />
           </label>
+
+          <br />
+          <br />
+
+          {submitPlaylistRes}
 
           <br />
           <br />
