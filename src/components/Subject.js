@@ -37,7 +37,6 @@ export default class Subject extends Component {
     //ternary
     console.log("primary name: ", name)
     console.log("primary value: ", value)
-
     this.setState({
       [name]: value
     })
@@ -115,7 +114,8 @@ export default class Subject extends Component {
   render() {
 
     let resources = null
-
+    //If playlist boolean is true, creates dropdown menu
+    //Else add direct link to resource
     let linksOrTitle = this.props.subject.topics.map((t, i) => {
       if (t.playlist) {
         return  <li key={i}>
@@ -152,7 +152,8 @@ export default class Subject extends Component {
     }
 
     let submitPlaylistRes = null
-
+    //If playlist checkbox is checked/true, reveals playlist inputs
+    //Else nothing
     if (this.state.playlist) {
       submitPlaylistRes = (
         <div>
