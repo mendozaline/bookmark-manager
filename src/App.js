@@ -8,6 +8,7 @@ class App extends Component {
 
     this.addNewRes = this.addNewRes.bind(this)
     this.addNewSub = this.addNewSub.bind(this)
+    this.removeSub = this.removeSub.bind(this)
 
     this.state = {
       subject: '',
@@ -307,6 +308,12 @@ class App extends Component {
     console.log('a: ', this.state)
   }
 
+  removeSub(index){
+    const tempSt = this.state
+    tempSt.resources.splice(index, 1)
+    this.setState(tempSt)
+  }
+
   render() {
 //    console.log("state: ", this.state.resources)
 
@@ -317,7 +324,12 @@ class App extends Component {
         {
           this.state.resources.map((r, i) => {
             return(
-              <Subject key={i} i={i} addRes={this.addNewRes} subject={r}/>
+              <Subject
+                key={i}
+                i={i}
+                addRes={this.addNewRes}
+                removeSub={this.removeSub}
+                subject={r}/>
             )
           })
         }

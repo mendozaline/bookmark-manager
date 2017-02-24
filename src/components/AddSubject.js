@@ -41,10 +41,9 @@ export default class AddSubject extends Component {
           type="string"
           value={this.state.subject}
           onChange={this.handleTyping} />
+        <button id="add" onClick={this.handleSubmit}>+</button>
+        <br />
 
-          <br />
-
-        <button onClick={this.handleSubmit}>Submit</button>
       </form>
       
     ) //end return

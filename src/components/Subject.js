@@ -11,6 +11,7 @@ export default class Subject extends Component {
     this.dropDownSub = this.dropDownSub.bind(this)
     this.updatePlaylistObj = this.updatePlaylistObj.bind(this)
     this.insertPlaylistObj = this.insertPlaylistObj.bind(this)
+    this.handleDel = this.handleDel.bind(this)
 
     this.state = {
       isClicked: false,
@@ -111,6 +112,11 @@ export default class Subject extends Component {
     })
   }
 
+  handleDel(event) {
+    event.preventDefault()
+    this.props.removeSub(this.props.i)
+  }
+
   render() {
 
     let resources = null
@@ -189,6 +195,7 @@ export default class Subject extends Component {
       <div>
         <h2 onClick={this.handleClick}>
           {this.props.subject.subject}
+          <button id="del" onClick={this.handleDel}>-</button>
         </h2>
 
         <ul>
