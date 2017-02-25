@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export default class Subject extends Component {
   constructor(props) {
     super(props)
-    // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleTyping = this.handleTyping.bind(this)
@@ -23,7 +22,7 @@ export default class Subject extends Component {
       playlistUrl: '',
       links: [],
     }
-  } //end constructor
+  }
 
   handleClick() {
     this.setState(prevState => ({
@@ -35,25 +34,14 @@ export default class Subject extends Component {
     const target = event.target
     const name = target.name
     const value = target.type === 'checkbox' ? target.checked : target.value
-    //ternary
-    console.log("primary name: ", name)
-    console.log("primary value: ", value)
+
     this.setState({
       [name]: value
     })
-//    console.log("title: ", this.state.title)
-//    console.log("url: ", this.state.url)
-//    console.log("playlist boolean: ", this.state.playlist)
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('STATE:' +
-                '\ntitle: ' +  this.state.title + 
-                '\nurl: ' + this.state.url + 
-                '\nplaylist: ' + this.state.playlist + 
-                '\nlinks', this.state.links)
-
     const newRes = {
       title: this.state.title,
       url: this.state.url,
@@ -64,8 +52,7 @@ export default class Subject extends Component {
     this.setState({
       title: '',
       url: '',
-      playlist: false, //needs to switch back to false/unchecked
-                        //!this.state.playlist
+      playlist: false,
       playlistTitle: '',
       playlistUrl: '',
       links: [],
@@ -74,7 +61,6 @@ export default class Subject extends Component {
 
   dropDown(event) {
     event.preventDefault()
-    console.log('dropdown value: ', event.target.value)
     this.setState({
       dropdownUrl: event.target.value
     })
@@ -85,19 +71,13 @@ export default class Subject extends Component {
     window.open(this.state.dropdownUrl)
   }
 
-  //Changes state of playlist title/url
   updatePlaylistObj(event) {
     event.preventDefault()
-    console.log('playlist name: ', event.target.name)
-    console.log('playlist value: ', event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     })
-//    console.log('playlistTitle: ', this.state.playlistTitle)
-//    console.log('playlistUrl: ', this.state.playlistUrl)
   }
 
-  //Insert playlist obj into playlist array
   insertPlaylistObj(event) {
     event.preventDefault()
     const arr = this.state.links
@@ -105,7 +85,6 @@ export default class Subject extends Component {
       title: this.state.playlistTitle,
       url: this.state.playlistUrl
     })
-    console.log('links:', arr)
     this.setState({
       playlistTitle: '',
       playlistUrl: ''
@@ -118,10 +97,7 @@ export default class Subject extends Component {
   }
 
   render() {
-
     let resources = null
-    //If playlist boolean is true, creates dropdown menu
-    //Else add direct link to resource
     let linksOrTitle = this.props.subject.topics.map((t, i) => {
       if (t.playlist) {
         return  <li key={i}>
@@ -131,7 +107,7 @@ export default class Subject extends Component {
                     <label>
                       Pick your video:
                       <select value={this.state.selected} onChange={this.dropDown}>
-                        <option value="">Select option</option>
+                        <option value="">Select a video</option>
                           {t.links.map((l, j) => {
                             return  <option key={j} value={l.url}>
                                       {l.title}
@@ -151,15 +127,7 @@ export default class Subject extends Component {
       }
     })
 
-    if (this.state.isClicked) {
-      resources = linksOrTitle
-    } else {
-      resources = null
-    }
-
     let submitPlaylistRes = null
-    //If playlist checkbox is checked/true, reveals playlist inputs
-    //Else nothing
     if (this.state.playlist) {
       submitPlaylistRes = (
         <div>
@@ -191,17 +159,9 @@ export default class Subject extends Component {
             submitPlaylistRes = null
     }
 
-    return(
+    let resForm = (
       <div>
-        <h2 onClick={this.handleClick}>
-          {this.props.subject.subject}
-          <button id="del" onClick={this.handleDel}>-</button>
-        </h2>
-
-        <ul>
-          {resources}
-        </ul>
-
+        <strong>Add a new resource:</strong>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Title:</label>
           <input
@@ -223,26 +183,45 @@ export default class Subject extends Component {
 
           <br />
 
-          <label htmlFor="playlist">Playlist:
+          <label htmlFor="playlist">Video playlist?:
             <input
               name="playlist"
               id="check"
               type="checkbox"
-              //checked={this.state.playlist}
               value={this.state.playlist}
               onChange={this.handleTyping} />
           </label>
 
           <br />
-          <br />
 
           {submitPlaylistRes}
 
           <br />
-          <br />
 
           <button onClick={this.handleSubmit}>Submit</button>
         </form>
+      </div>
+    )
+
+    let addRes = null
+    if (this.state.isClicked) {
+      resources = linksOrTitle
+      addRes = resForm
+    } else {
+      resources = null
+      addRes = null
+    }
+
+    return(
+      <div>
+        <h2 onClick={this.handleClick}>
+          {this.props.subject.subject}
+        </h2>
+        <button id="del" onClick={this.handleDel}>-</button>
+        <ul>
+          {resources}
+        </ul>
+        {addRes}
       </div>
     )
   }

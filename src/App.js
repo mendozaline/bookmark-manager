@@ -11,7 +11,6 @@ class App extends Component {
     this.removeSub = this.removeSub.bind(this)
 
     this.state = {
-      subject: '',
       resources: [
       {
         subject: "Functional Programming Basics",
@@ -293,11 +292,8 @@ class App extends Component {
   }
 
   addNewRes(subject, resource) {
-    console.log('state: ', this.state)
     const tempState = this.state
     tempState.resources[subject].topics.push(resource)
-    console.log('resources: ', this.state.resources)
-    console.log('resources[sub]: ', this.state.resources[subject])
     this.setState(tempState)
   }
 
@@ -305,7 +301,6 @@ class App extends Component {
     const tempSt = this.state
     tempSt.resources.push(subject)
     this.setState(tempSt)
-    console.log('a: ', this.state)
   }
 
   removeSub(index){
@@ -315,12 +310,9 @@ class App extends Component {
   }
 
   render() {
-//    console.log("state: ", this.state.resources)
-
     return (
       <div>
-        <AddSubject addSub={this.addNewSub}/>
-
+        <h1>React Bookmark Manager</h1>
         {
           this.state.resources.map((r, i) => {
             return(
@@ -335,7 +327,7 @@ class App extends Component {
         }
 
         <br />
-
+        <AddSubject addSub={this.addNewSub}/>
       </div>
     );
   }

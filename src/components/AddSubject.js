@@ -8,12 +8,9 @@ export default class AddSubject extends Component {
     this.state = {
       subject: '',
     }
-  } //end constructor
+  }
 
   handleTyping(event) {
-    console.log('name: ', event.target.name)
-    console.log('value: ', event.target.value)
-
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -21,12 +18,10 @@ export default class AddSubject extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
     const newSubject = {
       subject: this.state.subject,
       topics: [],
     }
-    console.log('nS: ', newSubject)
     this.props.addSub(newSubject)
   }
 
@@ -34,7 +29,7 @@ export default class AddSubject extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="subject">Add subject:</label>
+        <label htmlFor="subject"><strong>Add new subject:</strong></label>
         <input
           name="subject"
           id="subject"
@@ -46,7 +41,7 @@ export default class AddSubject extends Component {
 
       </form>
       
-    ) //end return
-  } //end render
+    )
+  }
 
 }
