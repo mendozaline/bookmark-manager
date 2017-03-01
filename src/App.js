@@ -9,6 +9,7 @@ class App extends Component {
     this.addNewRes = this.addNewRes.bind(this)
     this.addNewSub = this.addNewSub.bind(this)
     this.removeSub = this.removeSub.bind(this)
+    this.removeRes = this.removeRes.bind(this)
 
     this.state = {
       resources: [
@@ -309,6 +310,14 @@ class App extends Component {
     this.setState(tempSt)
   }
 
+  removeRes(subject, resource) {
+    console.log('s:', subject)
+    console.log('r:', resource)
+    const tempState = this.state
+    tempState.resources[subject].topics.splice(resource, 1)
+    this.setState(tempState)
+  }
+
   render() {
     return (
       <div>
@@ -321,6 +330,7 @@ class App extends Component {
                 i={i}
                 addRes={this.addNewRes}
                 removeSub={this.removeSub}
+                removeRes={this.removeRes}
                 subject={r}/>
             )
           })
