@@ -25,16 +25,16 @@ export default class Subject extends Component {
   }
 
   render() {
-    //console.log('subject:', this.props.subject)
     let currentResources = null
     let addResource = null
     if (this.state.isClicked) {
-      currentResources = <Resources 
+      currentResources = <Resources
                            items={this.props.subject}
                            removeRes={this.props.removeRes}
-                           i={this.props.i}
-                           />
-      addResource = <Form i={this.props.i} addRes={this.props.addRes} />
+                           i={this.props.i} />
+      addResource = <Form
+                      i={this.props.i}
+                      addRes={this.props.addRes} />
     } else {
       currentResources = null
       addResource = null
