@@ -80,9 +80,7 @@ export default class Form extends Component {
                 value={this.state.playlistTitle}
                 onChange={this.updatePlaylistObj} />
             </label>
-
             <br/>
-
             <label htmlFor="playlistUrl">Add playlist url:
               <input
                 name="playlistUrl"
@@ -91,9 +89,7 @@ export default class Form extends Component {
                 value={this.state.playlistUrl}
                 onChange={this.updatePlaylistObj} />
             </label>
-
             <br/>
-
             <button onClick={this.insertPlaylistObj}>Add to playlist</button>
         </div>
       )
