@@ -311,8 +311,6 @@ class App extends Component {
   }
 
   removeRes(subject, resource) {
-    console.log('s:', subject)
-    console.log('r:', resource)
     const tempState = this.state
     tempState.resources[subject].topics.splice(resource, 1)
     this.setState(tempState)
