@@ -23,7 +23,7 @@ export default class Dropdown extends Component {
   }
 
   render() {
-    let Here = this.props.t.links.map((l, j) => {
+    let videoOptions = this.props.t.links.map((l, j) => {
       return (
         <option key={j} value={l.url}>
           {l.title}
@@ -37,7 +37,7 @@ export default class Dropdown extends Component {
           Pick your video:
           <select value={this.state.selected} onChange={this.dropDown}>
             <option value="">Select a video</option>
-            {Here}
+            {videoOptions}
           </select>
         </label>
         <input type="submit" value="Submit" />
